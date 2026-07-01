@@ -1,6 +1,0 @@
-# Result in Markdown Files
-
-- Any **substantial** research result, hypothesis generation, strategic/product analysis, source digest, experiment list, etc. must be **written to a `.md` file** in the current workspace — not left only in chat.
-- Create or update a file: use `docs/` or `research/` at project root; name by topic, add date suffix if helpful (e.g. `docs/hypotheses-onboarding-2026-07-01.md`).
-- At the end of the chat response, **state the path** to the created/updated file.
-- If writing to the repo is impossible (no workspace, read-only, explicit user ban) — say so and provide content in chat as exception only.

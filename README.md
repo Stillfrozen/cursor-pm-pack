@@ -28,18 +28,21 @@ chmod +x install.sh
 
 ### 3. Подключить rules
 
-**Вариант A — на один проект (рекомендуется для команды):**
+Два уровня — **разный состав**, не дублируйте все 4 правила в оба места.
+
+**Вариант A — на проект / команду (все 4 rules):**
 
 ```bash
-mkdir -p /path/to/your-project/.cursor/rules
-cp -R .cursor/rules/* /path/to/your-project/.cursor/rules/
+./install.sh --rules /path/to/your-project
+# или вручную: cp -R .cursor/rules/* /path/to/your-project/.cursor/rules/
 ```
 
-**Вариант B — глобально на все workspace:**
+Включает `product-hypothesis-flow` и `interface-copywriting` (apply intelligently).
+
+**Вариант B — глобально на все workspace (только 2 always-on):**
 
 1. Cursor → **Settings → Rules → User Rules**
-2. Скопируйте содержимое файлов из `user-rules/*.md` (по одному блоку или все вместе)
-3. Сохраните
+2. Вставьте содержимое [`user-rules/global.md`](user-rules/global.md) одним блоком
 
 Подробнее: [user-rules/README.md](user-rules/README.md)
 

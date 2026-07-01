@@ -1,22 +1,42 @@
-# User Rules snippets for Cursor PM Pack
+# User Rules — как установить
 
-Файлы здесь — **не подхватываются Cursor автоматически**. Скопируй содержимое нужного `.md` в **Cursor → Settings → Rules → User Rules**, чтобы правило действовало во **всех** workspace на этой машине.
+Cursor **не подхватывает** файлы из этой папки автоматически. Два уровня rules — **разный состав**, не копипаста одного и того же.
 
-| Файл | Назначение |
-|------|------------|
-| `pm-strategic-copilot.md` | Devil's advocate, evidence-first, privacy guard |
-| `result-in-md-files.md` | Существенные результаты → файл в `docs/` |
-| `product-hypothesis-flow.md` | Чеклист гипотез и routing на skills |
-| `interface-copywriting.md` | Тексты интерфейса, без «копир» |
+## Глобально (все проекты на машине)
 
-## Рекомендуемый порядок установки
+**Файл:** [`global.md`](global.md) — один блок для **Cursor → Settings → Rules → User Rules**.
 
-1. `./install.sh` — skills в `~/.cursor/skills/`
-2. Скопировать все 4 файла в User Rules (или только `pm-strategic-copilot` + `result-in-md-files` для минимального набора)
-3. Для командной работы: additionally `cp -R ../.cursor/rules/ <project>/.cursor/rules/`
+Содержит только **always-on** правила:
+- `pm-strategic-copilot` — тон, evidence, privacy
+- `result-in-md-files` — артефакты в `docs/`
 
-## Опционально: Obsidian / vault
+## На проект (workspace)
 
-Если коллеги используют Obsidian-монорепу с YAML-тегами и `scripts/tag_vault_frontmatter.py` — это **не входит** в PM Pack. Настройте отдельно под свой vault.
+**Папка:** [`.cursor/rules/`](../.cursor/rules/) — копируется в корень репозитория команды.
 
-Дублируйте изменения на другой компьютер через git или вручную.
+Содержит **все 4** правила, включая контекстные:
+- `pm-strategic-copilot.mdc` (`alwaysApply: true`)
+- `result-in-md-files.mdc` (`alwaysApply: true`)
+- `product-hypothesis-flow.mdc` (apply intelligently — гипотезы, routing на skills)
+- `interface-copywriting.mdc` (apply intelligently — тексты UI)
+
+```bash
+mkdir -p /path/to/project/.cursor/rules
+cp -R .cursor/rules/* /path/to/project/.cursor/rules/
+```
+
+Или из корня пакета: `./install.sh --rules /path/to/project`
+
+## Что выбрать
+
+| Сценарий | Skills | Rules |
+|----------|--------|-------|
+| Быстрый личный старт | `./install.sh` | вставить `user-rules/global.md` |
+| Командный репозиторий | `./install.sh` | `cp .cursor/rules/` в проект |
+| Оба | `./install.sh` | global + workspace (дублирование always-on допустимо — Cursor мержит) |
+
+**Не ставьте** одни и те же 4 правила и в User Rules, и в workspace — будет шум. Global = 2 always-on; workspace = полный набор для PM-проекта.
+
+## Obsidian / vault
+
+Не входит в PM Pack. Настраивайте отдельно под свой vault.

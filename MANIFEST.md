@@ -1,6 +1,6 @@
 # Cursor PM Pack — Manifest
 
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Date:** 2026-07-01  
 **Audience:** PM, аналитики, маркетинг, ops (не разработчики)
 
@@ -26,7 +26,7 @@
 - `product-hypothesis-flow.mdc` — apply intelligently
 - `interface-copywriting.mdc` — apply intelligently
 
-**User Rules snippets** (`user-rules/`): те же тексты для глобальной установки в Cursor Settings.
+**User Rules** (`user-rules/global.md`): только 2 always-on правила для глобальной установки. Остальные 2 — только через workspace `.cursor/rules/`.
 
 ## Explicitly excluded
 
@@ -38,6 +38,11 @@
 - Cursor built-in `skills-cursor/*` (already shipped with Cursor)
 
 ## Changelog
+
+### 1.0.1 (2026-07-01)
+
+- Rules: убрано дублирование — `user-rules/global.md` (2 always-on) vs `.cursor/rules/` (все 4)
+- `install.sh --rules <path>` для workspace rules
 
 ### 1.0.0 (2026-07-01)
 
