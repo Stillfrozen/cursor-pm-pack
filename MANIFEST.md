@@ -1,51 +1,73 @@
 # Cursor PM Pack — Manifest
 
-**Version:** 1.0.1  
+**Version:** 1.1.0  
 **Date:** 2026-07-01  
 **Audience:** PM, аналитики, маркетинг, ops (не разработчики)
 
 ## Included skills (8)
 
-| Skill | Purpose |
-|-------|---------|
-| `quality-gate` | Качество ответов: контракт, anti-hallucination, review panel |
-| `evidence-gate` | Проверка готовности evidence перед PRD/ADR/стратегией |
-| `create-prd` | PRD с clarifying questions и B2C/regulated appendix |
-| `product-strategy-review` | PRISM strategy self-review (5 dimensions) |
-| `adr-decision` | ADR для kill/keep, build/buy/partner |
-| `survey-design-llm` | Дизайн опроса: гипотезы H1–Hn, спека Q1–Qn |
-| `survey-results-analysis` | Анализ выгрузок опросов (protocol-first, без custom scripts) |
-| `data-analysis` | Анализ сырых CSV/Excel/логов |
+| Skill | Source | Pack path |
+|-------|--------|-----------|
+| `quality-gate` | `~/.cursor/skills/quality-gate/` | `skills/quality-gate/` |
+| `evidence-gate` | `~/.cursor/skills/evidence-gate/` | `skills/evidence-gate/` |
+| `create-prd` | `~/.cursor/skills/create-prd/` | `skills/create-prd/` |
+| `product-strategy-review` | `~/.cursor/skills/product-strategy-review/` | `skills/product-strategy-review/` |
+| `adr-decision` | `~/.cursor/skills/adr-decision/` | `skills/adr-decision/` |
+| `survey-design-llm` | `~/.cursor/skills/survey-design-llm/` | `skills/survey-design-llm/` |
+| `survey-results-analysis` | `~/.cursor/skills/survey-results-analysis/` | `skills/survey-results-analysis/` |
+| `data-analysis` | `~/.cursor/skills/wallet-data-analysis/` | `skills/data-analysis/` |
 
-## Included rules (4)
+## Included rules
 
-**Workspace** (`.cursor/rules/`):
+**Global only:** [`user-rules/global.md`](user-rules/global.md) — 4 правила в одном блоке для Cursor User Rules.
 
-- `pm-strategic-copilot.mdc` — always on
-- `result-in-md-files.mdc` — always on
-- `product-hypothesis-flow.mdc` — apply intelligently
-- `interface-copywriting.mdc` — apply intelligently
+Workspace `.cursor/rules/` **удалён** (v1.1.0).
 
-**User Rules** (`user-rules/global.md`): только 2 always-on правила для глобальной установки. Остальные 2 — только через workspace `.cursor/rules/`.
+## Skills transfer audit
 
-## Explicitly excluded
+| Skill | Status | Notes |
+|-------|--------|-------|
+| `quality-gate` | **Complete** | SKILL.md + `references/` (9 files: contract, 8 reviewers). Дебренд примеров. |
+| `evidence-gate` | **Complete** | Полный перенос; persona routing → `Context/personas/`. |
+| `create-prd` | **Complete** | Дебренд: без wallet-персон/KYC/3-party; 13 секций PRD сохранены. |
+| `product-strategy-review` | **Complete** | PRISM 5D (без FinTech Ownership dimension); review.md/json шаблоны. |
+| `adr-decision` | **Complete** | Дебренд drivers/template; regulatory optional. |
+| `survey-design-llm` | **Complete** | SKILL.md + `reference.md`; без ссылок на repo-specific docs. |
+| `survey-results-analysis` | **Rewritten** | Protocol-first + ad-hoc Python; без `analyze_survey_results.py`. |
+| `data-analysis` | **Complete** | Переименован из wallet-data-analysis; убран wallet evidence block. |
 
-- Product-specific skills: `wallet-*`, `kaiten`, `pbr-announce`, `tasks-on-me`, `holst`
-- Dev skills: `microservice-*`, `pentest`, `ms-*`
-- MCP connectors and `mcp.json` templates
-- Subagents (`.cursor/agents/`)
-- Obsidian/vault-specific rules
-- Cursor built-in `skills-cursor/*` (already shipped with Cursor)
+### Намеренно не переносились (из `~/.cursor/skills/`)
+
+| Skill | Reason |
+|-------|--------|
+| `wallet-service-overview` | Product-specific |
+| `wallet-regulatory` | Product-specific |
+| `wallet-persona-router` | Product-specific |
+| `wallet-data-analysis` | → `data-analysis` (generalized) |
+| `kaiten` | Product/org-specific |
+| `pbr-announce` | Product/org-specific |
+| `tasks-on-me` | Product/org-specific |
+| `holst` | Product/org-specific (stub) |
+
+## Explicitly excluded (other)
+
+- Dev skills (`~/.claude/skills/*`)
+- MCP connectors
+- Subagents
+- Cursor built-in `skills-cursor/*`
 
 ## Changelog
 
+### 1.1.0 (2026-07-01)
+
+- Rules: только global (`user-rules/global.md`, все 4 правила); удалён `.cursor/rules/`
+- Skills audit: восстановлены `quality-gate/references/`, `survey-design-llm/reference.md`
+- `install.sh`: убран `--rules`
+
 ### 1.0.1 (2026-07-01)
 
-- Rules: убрано дублирование — `user-rules/global.md` (2 always-on) vs `.cursor/rules/` (все 4)
-- `install.sh --rules <path>` для workspace rules
+- Rules dedup: global (2) vs workspace (4) — superseded by 1.1.0
 
 ### 1.0.0 (2026-07-01)
 
-- Initial release: 8 generalized skills + 4 rules
-- Debranded from internal wallet/Kaiten/Holst context
-- `survey-results-analysis` rewritten without repo-specific Python scripts
+- Initial release

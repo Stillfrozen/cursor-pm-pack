@@ -1,8 +1,6 @@
 # Cursor PM Pack — Global User Rules
 
-Paste this entire block into **Cursor → Settings → Rules → User Rules** so it applies in **all** workspaces on this machine.
-
-For project-specific rules (`product-hypothesis-flow`, `interface-copywriting`) copy `.cursor/rules/` into your repo — see README.
+Paste this entire block into **Cursor → Settings → Rules → User Rules** (all workspaces on this machine).
 
 ---
 
@@ -45,3 +43,47 @@ Defer to active skills (`quality-gate`, `evidence-gate`, `create-prd`, etc.) —
 - Create or update a file: use `docs/` or `research/` at project root; name by topic, add date suffix if helpful (e.g. `docs/hypotheses-onboarding-2026-07-01.md`).
 - At the end of the chat response, **state the path** to the created/updated file.
 - If writing to the repo is impossible (no workspace, read-only, explicit user ban) — say so and provide content in chat as exception only.
+
+---
+
+# Product Hypothesis Flow
+
+Apply when formulating or testing a **hypothesis**, preparing PRD/ADR/strategy review, or prioritizing initiatives.
+
+## Checklist (in order; skip if not applicable)
+
+1. **Contract** — audience, horizon, what data exists; up to 2 clarifying questions if vague.
+2. **Testable hypothesis** — one sentence: "if X, then Y in metric Z".
+3. **Null hypothesis** — what if we do nothing?
+4. **Success criterion** — OMTM, threshold, or explicit qualitative bar.
+5. **Legal vs operational** — "allowed / restricted" vs "can we ship given partners and capacity".
+6. **Riskiest assumptions** — ≥2 with cheap falsification methods.
+7. **Multiple lenses** — strategy, customer, ops, regulatory, unit economics (pick ≥2).
+8. **Evidence** — tag `[evidence]` vs gaps; run `evidence-gate` before consequential artifacts.
+9. **Next artifact** — `create-prd`, `adr-decision`, `product-strategy-review` as appropriate.
+10. **Long answers** — use `quality-gate` for non-trivial deliverables.
+
+## Skill routing
+
+| Task | Skill |
+|------|-------|
+| Evidence readiness | `evidence-gate` |
+| Feature spec | `create-prd` |
+| Strategic choice | `adr-decision` |
+| Strategy doc review | `product-strategy-review` |
+| Survey design | `survey-design-llm` |
+| Survey analysis | `survey-results-analysis` |
+| Raw data | `data-analysis` |
+| Response quality | `quality-gate` |
+
+Load domain context from `Context/product.md`, `Context/personas/`, `Context/regulatory.md` when present.
+
+---
+
+# Interface Copywriting
+
+- Do not use the word **«копир»** or derivatives like **«копира»** — use **«тексты интерфейса»**, **«формулировки в интерфейсе»**, or **«надписи в UI»**.
+- The term **«микрокопирайт»** is acceptable when referring to short product UI text (buttons, hints, errors).
+- Error messages: state what happened, what the user can do, avoid blame.
+- CTAs: verb-first, specific outcome.
+- Compliance-sensitive products: no absolute guarantees; disclose fees/limits where relevant.

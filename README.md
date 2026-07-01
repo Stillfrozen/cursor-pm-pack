@@ -26,25 +26,13 @@ chmod +x install.sh
 
 Перезапустите Cursor или откройте новый чат — skills подхватятся автоматически.
 
-### 3. Подключить rules
-
-Два уровня — **разный состав**, не дублируйте все 4 правила в оба места.
-
-**Вариант A — на проект / команду (все 4 rules):**
-
-```bash
-./install.sh --rules /path/to/your-project
-# или вручную: cp -R .cursor/rules/* /path/to/your-project/.cursor/rules/
-```
-
-Включает `product-hypothesis-flow` и `interface-copywriting` (apply intelligently).
-
-**Вариант B — глобально на все workspace (только 2 always-on):**
+### 3. Подключить rules (глобально)
 
 1. Cursor → **Settings → Rules → User Rules**
-2. Вставьте содержимое [`user-rules/global.md`](user-rules/global.md) одним блоком
+2. Вставьте [`user-rules/global.md`](user-rules/global.md) **целиком** одним блоком
+3. Сохраните
 
-Подробнее: [user-rules/README.md](user-rules/README.md)
+Все 4 правила пакета — только через User Rules, workspace `.cursor/rules/` не используется.
 
 ---
 
@@ -61,14 +49,16 @@ chmod +x install.sh
 | `survey-results-analysis` | Анализ xlsx/csv выгрузки опроса |
 | `data-analysis` | Любой сырой датасет: CSV, Excel, логи |
 
-### Rules (всегда или по контексту)
+### Rules (в `user-rules/global.md`)
 
-| Rule | Режим | Назначение |
-|------|-------|------------|
-| `pm-strategic-copilot` | always | Devil's advocate, evidence-first |
-| `result-in-md-files` | always | Существенные результаты → файл в `docs/` |
-| `product-hypothesis-flow` | intelligent | Чеклист для гипотез и приоритизации |
-| `interface-copywriting` | intelligent | Тексты интерфейса, без «копир» |
+| Rule | Назначение |
+|------|------------|
+| PM Strategic Copilot | Devil's advocate, evidence-first, privacy |
+| Result in Markdown Files | Существенные результаты → `docs/` |
+| Product Hypothesis Flow | Чеклист гипотез, routing на skills |
+| Interface Copywriting | Тексты интерфейса, без «копир» |
+
+Полный аудит переноса skills: [MANIFEST.md](MANIFEST.md#skills-transfer-audit).
 
 ---
 
@@ -79,56 +69,42 @@ chmod +x install.sh
 ```text
 your-project/
 ├── Context/
-│   ├── product.md          # что за продукт, для кого
-│   ├── personas/           # целевые сегменты / персоны
-│   └── regulatory.md       # если regulated industry (опционально)
-├── Knowledge/              # ресёрчи, интервью
+│   ├── product.md
+│   ├── personas/
+│   └── regulatory.md       # опционально
+├── Knowledge/
 ├── Work/
 │   ├── PRDs/
 │   └── Decisions/
-└── docs/                   # артефакты от агента
+└── docs/
 ```
-
-Агент подхватит `Context/` и `Knowledge/` автоматически при работе в этом workspace.
 
 ---
 
 ## Обновление
 
 ```bash
-git pull   # или получить новую версию папки
+git pull
 ./install.sh --force
+# при изменении rules — обновите User Rules из user-rules/global.md
 ```
-
-Сверьте `MANIFEST.md` — там changelog и список изменений.
 
 ---
 
 ## Чего нет в пакете
 
-- MCP-коннекторы (Confluence, Kaiten, Google Drive и т.д.)
-- Dev-скиллы (microservice scaffold, security audit)
+- MCP-коннекторы
+- Dev-скиллы
 - Subagents
-- Vault/Obsidian-специфика
-
-Если нужен vault-workflow — см. опциональный appendix в конце `user-rules/README.md`.
+- Workspace rules (`.cursor/rules/`)
+- Product-specific skills (`wallet-*`, `kaiten`, `holst`, …)
 
 ---
 
 ## FAQ
 
-**Skills не видны в чате?**  
-Проверьте `~/.cursor/skills/<name>/SKILL.md` после `./install.sh`. Перезапустите Cursor.
+**Skills не видны?** — проверьте `~/.cursor/skills/` после `./install.sh`, перезапустите Cursor.
 
-**Rules не работают?**  
-User Rules — только через Settings. Workspace rules — только если `.cursor/rules/` лежит в **корне открытого проекта**.
+**Rules не работают?** — только через **User Rules** в Settings, не через файлы в репозитории.
 
-**Можно править skills после установки?**  
-Да. `./install.sh --force` перезапишет — сохраните свои правки отдельно.
-
----
-
-## Связанные заметки
-
-- [MANIFEST.md](MANIFEST.md) — версия, changelog, исключения
-- [user-rules/README.md](user-rules/README.md) — установка глобальных rules
+**Можно править после установки?** — да; `./install.sh --force` перезапишет skills из пакета.

@@ -11,7 +11,7 @@ Run **in order**: complexity routing → contract (when non-trivial) → anti-ha
 
 ## Phase 0: Complexity gate (EVERY request)
 
-**Goal:** Nothing starts "blind"; every prompt is classified before substantive work.
+**Goal:** Nothing starts “blind”; every prompt is classified before substantive work.
 
 ### Mandatory check (internal, fast)
 
@@ -19,10 +19,10 @@ On **every** user message in **any** project, classify the request:
 
 | Tier | Meaning | Examples |
 |------|---------|----------|
-| **Trivial** | Single-step, closed scope, no stakeholder artifact, no synthesis across sources | One definition; translate a sentence; format a snippet; "what does this flag do" with code attached; follow-up that only confirms prior contract |
-| **Non-trivial** | Anything **beyond** trivial | Analysis, recommendations, strategy, trade-offs, prioritization; multi-step implementation; ambiguous scope; comparisons; compliance/legal judgment; PRD-like output; **research** (see below); anything where "done" is unclear without agreeing expectations |
+| **Trivial** | Single-step, closed scope, no stakeholder artifact, no synthesis across sources | One definition; translate a sentence; format a snippet; “what does this flag do” with code attached; follow-up that only confirms prior contract |
+| **Non-trivial** | Anything **beyond** trivial | Analysis, recommendations, strategy, trade-offs, prioritization; multi-step implementation; ambiguous scope; comparisons; compliance/legal judgment; PRD-like output; **research** (see below); anything where “done” is unclear without agreeing expectations |
 
-**Escalate** trivial → non-trivial if you see vagueness, missing attachments, conflicting constraints, or implicit "like last time" without context.
+**Escalate** trivial → non-trivial if you see vagueness, missing attachments, conflicting constraints, or implicit “like last time” without context.
 
 ### Routing
 
@@ -33,7 +33,7 @@ On **every** user message in **any** project, classify the request:
 
 ### When this skill defers (narrow exceptions)
 
-Do **not** duplicate Phase 1 contract if another **active** skill/command already locks deliverable + scope (PRD, ADR, evidence-gate, PRISM-review, compliance memo, etc.). You still perform **Phase 0 classification** mentally so you don't skip research hygiene by accident.
+Do **not** duplicate Phase 1 contract if another **active** skill/command already locks deliverable + scope (PRD, ADR, evidence-gate, PRISM-review, compliance memo, etc.). You still perform **Phase 0 classification** mentally so you don’t skip research hygiene by accident.
 
 Skip **only** the Phase 3 panel (not Phase 0–2) when:
 
@@ -41,11 +41,13 @@ Skip **only** the Phase 3 panel (not Phase 0–2) when:
 - User explicitly asked for «коротко» / «одной строкой» / «ASAP» / «TL;DR only» — contract may be one sentence; panel usually off.
 - Continuation of a long doc with unchanged contract — re-run panel only when content/constraints change materially.
 
+`code-reviewer` subagent active: Phase 3 optional; Phase 0–2 still apply if the coding task is non-trivial or uses research.
+
 ---
 
 ## Phase 1: Contract with the user (non-trivial ONLY)
 
-**Goal:** Agree what "good" looks like before expensive work — **never only** keep the contract hidden when the ask is beyond trivial.
+**Goal:** Agree what “good” looks like before expensive work — **never only** keep the contract hidden when the ask is beyond trivial.
 
 ### When the prompt is incomplete
 
@@ -71,7 +73,9 @@ CONTRACT:
 **Rules:**
 
 - 3–5 items max for the **user-visible** contract.
-- If Phase 0 already established the contract in-thread, don't re-negotiate unless the user moves the goalposts.
+- If Phase 0 already established the contract in-thread, don’t re-negotiate unless the user moves the goalposts.
+
+Full template notes: [references/contract.md](references/contract.md).
 
 ---
 
@@ -85,16 +89,16 @@ Treat as research if **any** of these apply:
 
 - Web search, Tavily, or **any** MCP search/extract/fetch/browse tool used to justify facts.
 - Multi-source synthesis about the external world (market, competitors, regulation, news, versions of third-party products).
-- Answering "what happened / what is current" on time-sensitive topics without a repo or user-supplied primary source.
+- Answering “what happened / what is current” on time-sensitive topics without a repo or user-supplied primary source.
 
 For **research**, **all** rules below are mandatory — including citation formatting — with no shortcuts.
 
 ### Baseline (non-research but non-trivial, or any factual claims)
 
-1. **Numbers and dates.** Trace to a loaded reference, search result, or user-provided data. If resting on training data for a changeable topic — verify or flag as "as of [cutoff], may be outdated".
-2. **Entity claims.** "Company X does Y", "Law Z says W" — only with a traceable source or clear uncertainty.
+1. **Numbers and dates.** Trace to a loaded reference, search result, or user-provided data. If resting on training data for a changeable topic — verify or flag as “as of [cutoff], may be outdated”.
+2. **Entity claims.** “Company X does Y”, “Law Z says W” — only with a traceable source or clear uncertainty.
 3. **Causal claims.** Label: `fact:` / `likely:` / `hypothesis:`.
-4. **Negatives.** Don't claim "X does not exist" without searching — prefer "I wasn't able to find X".
+4. **Negatives.** Don’t claim “X does not exist” without searching — prefer “I wasn’t able to find X”.
 5. **Web citations (hard rule).** Any fact obtained via web search, Tavily, or MCP search/fetch MUST be followed immediately by:
 
    ```
@@ -103,15 +107,15 @@ For **research**, **all** rules below are mandatory — including citation forma
 
    - Publication date missing on page → «дата неизвестна». Do **not** omit the block.
    - Multiple facts from one source in one paragraph → one citation after the last fact.
-   - «По данным открытых источников» without URL = failure — replace with real citation or "не удалось подтвердить источником".
+   - «По данным открытых источников» without URL = failure — replace with real citation or “не удалось подтвердить источником”.
 
 ### Confidence signals
 
 | Confidence | Expression |
 |------------|------------|
 | High (verified source) | State directly; cite |
-| Medium (training / plausible) | "Based on my knowledge as of…" / "Typically…" |
-| Low | "I suspect…" / "Worth verifying…" |
+| Medium (training / plausible) | “Based on my knowledge as of…” / “Typically…” |
+| Low | “I suspect…” / “Worth verifying…” |
 | Unknown | Say so + search |
 
 **Hard rules**
@@ -124,14 +128,34 @@ For **research**, **all** rules below are mandatory — including citation forma
 
 ## Examples (reference)
 
+Concrete patterns — not exhaustive; use judgment when a prompt sits between buckets.
+
+### Phase 0 — Trivial
+
+| User prompt | Why trivial |
+|-------------|-------------|
+| «Переведи на английский: …» | Single deliverable, no negotiation of “good”. |
+| «Что делает флаг `--dry-run` в этом скрипте?» + файл в контексте | Closed scope; answer lives in artifact. |
+| «Да, делай как ты предложил» after contract already set | Confirmation only. |
+| «Переименуй переменную `x` в `userId` в этом фрагменте» | Local edit, success obvious. |
+
 ### Phase 0 — Non-trivial
 
 | User prompt | Why non-trivial |
 |-------------|-----------------|
 | «Стоит ли нам выкатывать фичу A до конца квартала?» | Judgment, trade-offs, missing constraints. |
 | «Сравни подходы X и Y для нашего сервиса» | Comparison + likely needs scope (latency? cost?). |
+| «Почини CI» без логов / без репозитория | Ambiguous done-ness; needs contract or artifacts. |
 | «Напиши PRD на онбординг» | Stakeholder artifact; scope/format must align. |
 | «Какие сейчас отраслевые лимиты для новых клиентов?» | External, time-sensitive facts → research unless user supplies primary source. |
+
+### Phase 0 — Escalate (looked trivial, isn’t)
+
+| Prompt | Signal | Action |
+|--------|--------|--------|
+| «Ты же помнишь контекст — обнови как в прошлый раз» | No thread link; “прошлый раз” unknown | Non-trivial: ask what to mirror or where spec lives. |
+| «Сделай репорт» | No period, audience, data source | Non-trivial: up to 2 questions + default offer. |
+| «Это баг или фича?» | No repro, no expected behavior | Non-trivial: ask for minimal repro / acceptance criteria. |
 
 ### Phase 1 — Contract when prompt is incomplete
 
@@ -139,9 +163,44 @@ For **research**, **all** rules below are mandatory — including citation forma
 
 **Assistant (bundle ≤2 questions):** «Чтобы попасть в цель: (1) регион и сегмент (B2C/B2B)? (2) формат выдачи — таблица из 5 игроков или длинный разбор топ‑2? Если без ответа — сделаю таблицу из 5 для RU B2C по публичным источникам.»
 
+### Phase 1 — Contract when prompt is already specific
+
+**User:** «Дай список из 5 конкурентов в RU B2C, только таблица: продукт, позиционирование, сильная сторона — источники с ссылками.»
+
+**Assistant (opening):** Short **CONTRACT** restatement, e.g. deliverable = markdown table 5 rows; scope = RU B2C in stated category; depth = one line per column; success = each row has ≥1 citation; constraints = Russian market.
+
+### Phase 2 — Research vs baseline only
+
+| Situation | Mode |
+|-----------|------|
+| Web search / Tavily / MCP fetch used for facts | **Research** — full protocol + citations for web-derived facts. |
+| Answer uses only repo files user opened + grep/read | **Baseline** — cite file paths / snippets; no fake line numbers. |
+| «Какой сейчас дефолт у Node LTS?» without opening nodejs.org | **Research** — verify or qualify as stale training. |
+| Refactor TypeScript with types from `node_modules` in workspace | Usually **not** research; facts from local packages. |
+
+### Phase 2 — Citation (research)
+
+**Bad:** «Рынок вырос на 40% за год.»
+
+**Good:** «По оценке [агентства], рынок вырос на ~40% год к году.»
+
+```
+> Источник: [Заголовок страницы](https://example.com/report), дата публикации: 12.03.2026
+```
+
+If the page has no date → `дата неизвестна`. If no acceptable source → say verification failed; don’t invent.
+
+### Phase 3 — Panel skipped vs on
+
+| Situation | Panel |
+|-----------|-------|
+| One-sentence trivial answer | Skip |
+| Multi-criteria recommendation with trade-offs | Full panel |
+| User said «одной строкой» | Skip panel; contract can be one line |
+
 ### Deferring to another skill
 
-**User** runs `/create-prd` with the PRD skill active: **don't** paste a second full quality-gate contract — the PRD skill owns sections and questions. Still classify Phase 0; if PRD needs external market stats, **research** rules apply to those facts.
+**User** runs `/create-prd` with the PRD skill active: **don’t** paste a second full quality-gate contract — the PRD skill owns sections and questions. Still classify Phase 0; if PRD needs external market stats, **research** rules apply to those facts.
 
 ---
 
@@ -158,6 +217,7 @@ For **research**, **all** rules below are mandatory — including citation forma
 | PRD, report, document | Full | All 4 | Amplifier + Advocate |
 | Compliance / legal evaluation | Partial | Realist + Skeptic | Advocate |
 | Creative output (text, design, UX) | Partial | Critic + Pragmatist | Amplifier + Visionary |
+| Code / technical solution | Optional | Pragmatist + Realist | — |
 | Board review / multi-stakeholder narrative | No | — | — |
 
 ### Panel Output Format
@@ -190,3 +250,18 @@ After the full response, append `---` and:
 - Silence = approval; omit idle reviewers.
 - Critical reviewers first, then constructive.
 - **Bold** the single biggest **risk** (critics) and **opportunity** (constructive).
+
+---
+
+## Reviewer Reference
+
+Read before writing the panel:
+
+- **Critic** → [references/critic.md](references/critic.md)
+- **Pragmatist** → [references/pragmatist.md](references/pragmatist.md)
+- **Realist** → [references/realist.md](references/realist.md)
+- **Skeptic** → [references/skeptic.md](references/skeptic.md)
+- **Amplifier** → [references/amplifier.md](references/amplifier.md)
+- **Synthesizer** → [references/synthesizer.md](references/synthesizer.md)
+- **Advocate** → [references/advocate.md](references/advocate.md)
+- **Visionary** → [references/visionary.md](references/visionary.md)

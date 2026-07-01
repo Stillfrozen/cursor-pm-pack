@@ -95,3 +95,7 @@ Remind user: after fielding, put export in `survey-results/` and use `survey-res
 - Mask PII in any shared artifacts.
 - Use a product alias unless the user explicitly requires exact public brand spelling.
 - Do not commit raw survey exports with personal data to git.
+
+## References
+
+- [reference.md](reference.md) — hypothesis→question mapping, anti-bias patterns
