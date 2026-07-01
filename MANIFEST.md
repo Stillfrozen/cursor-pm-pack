@@ -1,6 +1,6 @@
 # Cursor PM Pack — Manifest
 
-**Version:** 1.1.0  
+**Version:** 1.2.0  
 **Date:** 2026-07-01  
 **Audience:** PM, аналитики, маркетинг, ops (не разработчики)
 
@@ -56,7 +56,23 @@ Workspace `.cursor/rules/` **удалён** (v1.1.0).
 - Subagents
 - Cursor built-in `skills-cursor/*`
 
+## Client support
+
+| Client | Skills install | Instructions |
+|--------|----------------|--------------|
+| Cursor | `./install.sh --target cursor` → `~/.cursor/skills/` | `user-rules/global.md` → User Rules |
+| Claude Desktop / Code | `./install.sh --target claude` → `~/.claude/skills/` | `user-rules/global.md` → Custom instructions |
+| Claude Desktop (ZIP) | `./scripts/package-claude-desktop.sh` → upload `.zip` | same `global.md` |
+| Both | `./install.sh --target both` | paste in both UIs |
+| Project-scoped (Claude) | `./install.sh --target claude --project <repo>` → `.claude/skills/` | — |
+
 ## Changelog
+
+### 1.2.0 (2026-07-01)
+
+- Claude Desktop: `--target claude|both`, `--project` for `.claude/skills/`
+- `scripts/package-claude-desktop.sh` — ZIP per skill for Desktop upload
+- `claude-desktop/README.md`; unified `global.md` for Cursor + Claude instructions
 
 ### 1.1.0 (2026-07-01)
 

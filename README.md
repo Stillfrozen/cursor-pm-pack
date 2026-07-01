@@ -1,12 +1,14 @@
-# Cursor PM Pack
+# PM Pack — skills & instructions for Cursor and Claude
 
-Переносимый набор **skills** и **rules** для продуктовой работы в Cursor — без привязки к конкретному продукту, без MCP и без dev-инструментов.
+Переносимый набор **skills** и **instructions** для продуктовой работы — без привязки к конкретному продукту, без MCP и без dev-инструментов.
+
+**Клиенты:** [Cursor](https://cursor.com) и **Claude Desktop** (включая Cowork).
 
 **Для кого:** PM, аналитики, маркетинг, ops.
 
 ---
 
-## Быстрый старт (3 шага)
+## Быстрый старт
 
 ### 1. Получить пакет
 
@@ -18,21 +20,50 @@ cd cursor-pm-pack
 ### 2. Установить skills
 
 ```bash
-chmod +x install.sh
-./install.sh          # копирует в ~/.cursor/skills/
-./install.sh --dry-run  # проверка без записи
-./install.sh --force    # перезаписать существующие
+chmod +x install.sh scripts/package-claude-desktop.sh
+
+# только Cursor (по умолчанию)
+./install.sh
+
+# только Claude Desktop / Claude Code
+./install.sh --target claude
+
+# оба клиента
+./install.sh --target both
+
+# + skills в репозиторий команды
+./install.sh --target both --project /path/to/your-repo
 ```
 
-Перезапустите Cursor или откройте новый чат — skills подхватятся автоматически.
+| `--target` | Куда копируются skills |
+|------------|------------------------|
+| `cursor` | `~/.cursor/skills/` |
+| `claude` | `~/.claude/skills/` |
+| `both` | оба каталога |
 
-### 3. Подключить rules (глобально)
+Перезапустите клиент или откройте новый чат.
 
-1. Cursor → **Settings → Rules → User Rules**
-2. Вставьте [`user-rules/global.md`](user-rules/global.md) **целиком** одним блоком
-3. Сохраните
+### 3. Подключить instructions (rules)
 
-Все 4 правила пакета — только через User Rules, workspace `.cursor/rules/` не используется.
+Один файл — [`user-rules/global.md`](user-rules/global.md):
+
+| Клиент | Куда вставить |
+|--------|----------------|
+| **Cursor** | Settings → Rules → User Rules |
+| **Claude Desktop** | Settings → Profile → Custom instructions |
+
+Вставляйте текст с `# PM Strategic Copilot` и ниже (после шапки).
+
+### 4. Claude Desktop — альтернатива: ZIP upload
+
+Если skills не подхватываются из `~/.claude/skills/`:
+
+```bash
+./scripts/package-claude-desktop.sh
+# dist/claude-desktop/*.zip → Settings → Customize → Skills → Upload
+```
+
+Подробнее: [claude-desktop/README.md](claude-desktop/README.md)
 
 ---
 
@@ -40,44 +71,35 @@ chmod +x install.sh
 
 | Skill | Когда вызывать |
 |-------|----------------|
-| `quality-gate` | Любой нетривиальный ответ; research с цитированием |
-| `evidence-gate` | Перед PRD, ADR, strategy review — «достаточно ли данных?» |
+| `quality-gate` | Нетривиальный ответ; research с цитированием |
+| `evidence-gate` | Перед PRD, ADR, strategy review |
 | `create-prd` | «напиши PRD», spec для фичи |
-| `product-strategy-review` | Квартальный обзор стратегии, PRISM scoring |
-| `adr-decision` | kill/keep, build/buy/partner, sunset |
-| `survey-design-llm` | Дизайн опроса, гипотезы, вопросы |
-| `survey-results-analysis` | Анализ xlsx/csv выгрузки опроса |
-| `data-analysis` | Любой сырой датасет: CSV, Excel, логи |
+| `product-strategy-review` | PRISM strategy review |
+| `adr-decision` | kill/keep, build/buy/partner |
+| `survey-design-llm` | Дизайн опроса |
+| `survey-results-analysis` | Анализ xlsx/csv |
+| `data-analysis` | Сырые CSV, Excel, логи |
 
-### Rules (в `user-rules/global.md`)
+Instructions в `user-rules/global.md`: PM copilot, markdown artifacts, hypothesis flow, UI copy.
 
-| Rule | Назначение |
-|------|------------|
-| PM Strategic Copilot | Devil's advocate, evidence-first, privacy |
-| Result in Markdown Files | Существенные результаты → `docs/` |
-| Product Hypothesis Flow | Чеклист гипотез, routing на skills |
-| Interface Copywriting | Тексты интерфейса, без «копир» |
-
-Полный аудит переноса skills: [MANIFEST.md](MANIFEST.md#skills-transfer-audit).
+Аудит переноса: [MANIFEST.md](MANIFEST.md#skills-transfer-audit).
 
 ---
 
-## Калибровка под свой продукт
-
-Пакет **не содержит** продуктовых фактов. Положите в свой workspace:
+## Калибровка под продукт
 
 ```text
 your-project/
 ├── Context/
 │   ├── product.md
 │   ├── personas/
-│   └── regulatory.md       # опционально
+│   └── regulatory.md
 ├── Knowledge/
 ├── Work/
-│   ├── PRDs/
-│   └── Decisions/
 └── docs/
 ```
+
+Для Claude в репозитории: `./install.sh --project . --target claude` → `.claude/skills/`.
 
 ---
 
@@ -85,26 +107,16 @@ your-project/
 
 ```bash
 git pull
-./install.sh --force
-# при изменении rules — обновите User Rules из user-rules/global.md
+./install.sh --target both --force
+# обновите global.md в User Rules / Custom instructions при изменениях
 ```
-
----
-
-## Чего нет в пакете
-
-- MCP-коннекторы
-- Dev-скиллы
-- Subagents
-- Workspace rules (`.cursor/rules/`)
-- Product-specific skills (`wallet-*`, `kaiten`, `holst`, …)
 
 ---
 
 ## FAQ
 
-**Skills не видны?** — проверьте `~/.cursor/skills/` после `./install.sh`, перезапустите Cursor.
+**Cursor skills не видны?** — `~/.cursor/skills/`, перезапуск Cursor.
 
-**Rules не работают?** — только через **User Rules** в Settings, не через файлы в репозитории.
+**Claude skills не видны?** — `~/.claude/skills/` или ZIP upload; в Cowork — `/имя-скилла`.
 
-**Можно править после установки?** — да; `./install.sh --force` перезапишет skills из пакета.
+**Один пакет на двух клиентах?** — `./install.sh --target both`; instructions один раз в каждый UI.

@@ -1,11 +1,14 @@
-# User Rules
+# User Rules / Custom Instructions
 
-Скопируй [`global.md`](global.md) целиком в **Cursor → Settings → Rules → User Rules**.
+Единый файл [`global.md`](global.md) — для **Cursor User Rules** и **Claude Custom instructions**.
 
-Там все 4 правила пакета в одном блоке:
-- PM Strategic Copilot
-- Result in Markdown Files
-- Product Hypothesis Flow
-- Interface Copywriting
+| Клиент | Путь в UI |
+|--------|-----------|
+| Cursor | Settings → Rules → User Rules |
+| Claude Desktop | Settings → Profile → Custom instructions |
 
-Workspace rules (`.cursor/rules/`) в пакете **нет** — только глобальная установка.
+Вставляйте содержимое начиная с `# PM Strategic Copilot` (после первого `---`).
+
+Skills ставятся отдельно: `./install.sh --target cursor` или `--target claude` или `--target both`.
+
+Подробнее про Claude: [claude-desktop/README.md](../claude-desktop/README.md)

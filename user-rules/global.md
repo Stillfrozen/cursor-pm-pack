@@ -1,6 +1,13 @@
-# Cursor PM Pack — Global User Rules
+# PM Pack — Global Instructions
 
-Paste this entire block into **Cursor → Settings → Rules → User Rules** (all workspaces on this machine).
+Единый блок правил для **Cursor** и **Claude Desktop**.
+
+| Клиент | Куда вставить |
+|--------|----------------|
+| **Cursor** | Settings → Rules → User Rules |
+| **Claude Desktop** | Settings → Profile → Custom instructions |
+
+Вставьте всё **ниже линии `---`** (с заголовка `# PM Strategic Copilot`).
 
 ---
 
