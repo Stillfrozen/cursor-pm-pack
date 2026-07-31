@@ -1,8 +1,11 @@
 ---
-name: data-analysis
-description: Analyze unknown raw datasets with a protocol-first workflow. Use when working with Excel/CSV exports, event logs, customer tables, transaction ledgers, operational logs, research spreadsheets, mixed data dumps, or when the user asks to understand customer behavior, patterns, blockers, segments, anomalies, or data meaning.
+title: "Data Analysis"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
 ---
-
 # Data Analysis
 
 Use this skill for **unknown or raw datasets**. The workflow is universal across projects. It is not a funnel-only skill.

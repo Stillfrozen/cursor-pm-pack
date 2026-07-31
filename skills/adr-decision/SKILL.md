@@ -1,8 +1,11 @@
 ---
-name: adr-decision
-description: Produces an Architecture Decision Record (ADR) for product-strategic decisions — kill/keep, build/buy/partner, sunset, scope-down. Includes optional regulatory cost and stakeholder-fit checks for regulated industries. Use when facing a binary or multi-option strategic choice that must be documented for future "why did we decide that?" lookups. Trigger phrases — "decision record", "ADR", "kill or keep", "закрывать или нет", "build vs buy", "should we sunset".
+title: "ADR — Product Strategic Decision Record"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
 ---
-
 # ADR — Product Strategic Decision Record
 
 A lightweight, durable record of one significant decision and the reasoning behind it. Written so that 6 months later, a different PM can read it and understand exactly **why** the call was made — without having to re-litigate.

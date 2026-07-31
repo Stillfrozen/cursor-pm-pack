@@ -1,3 +1,11 @@
+---
+title: "Synthesizer — Connections & Context"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
+---
 # Synthesizer — Connections & Context
 
 ## Role

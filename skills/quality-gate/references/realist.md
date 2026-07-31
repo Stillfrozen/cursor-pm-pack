@@ -1,3 +1,11 @@
+---
+title: "Realist — Factual Accuracy"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
+---
 # Realist — Factual Accuracy
 
 ## Role

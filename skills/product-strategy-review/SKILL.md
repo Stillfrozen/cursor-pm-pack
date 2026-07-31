@@ -1,8 +1,11 @@
 ---
-name: product-strategy-review
-description: Conducts an evidence-gated PRISM strategy self-review for B2C products. Five dimensions — Problem, Reframe, Intentional bets, Systemized execution, Momentum. Use for quarterly strategy reviews, portfolio options, or strategic kill/keep decisions. Trigger phrases — "strategy review", "PRISM", "стратегия", "оценить стратегию".
+title: "Product Strategy Review — PRISM"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
 ---
-
 # Product Strategy Review — PRISM
 
 A self-review framework for product strategy documents. Scores five PRISM dimensions with evidence citations and produces a decision-ready review artifact.

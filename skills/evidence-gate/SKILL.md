@@ -1,8 +1,11 @@
 ---
-name: evidence-gate
-description: Lightweight gating check before any consequential PM artifact (PRD, strategy review, ADR, OKR). Verifies evidence readiness using a 5-item core checklist + 4-item advanced checklist, returns PROCEED / HOLD / AUTO-ESCALATE, and proposes a 1-day evidence sprint when blocked. Use as a prelude to create-prd, product-strategy-review, adr-decision, or whenever you're about to commit to a major direction. Trigger phrases — "evidence gate", "are we ready to decide", "have we done enough discovery".
+title: "Evidence Gate — Readiness Check"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
 ---
-
 # Evidence Gate — Readiness Check
 
 Don't draft strategic artifacts on air. Before committing scarce attention to a PRD / ADR / strategy review, verify the evidence base is real. If it isn't, run a 1-day sprint to fix it.

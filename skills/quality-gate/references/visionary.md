@@ -1,3 +1,11 @@
+---
+title: "Visionary — Long-term Potential"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
+---
 # Visionary — Long-term Potential
 
 ## Role

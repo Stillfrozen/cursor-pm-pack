@@ -1,3 +1,11 @@
+---
+title: "Critic — Logical Consistency"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
+---
 # Critic — Logical Consistency
 
 ## Role

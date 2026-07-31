@@ -1,3 +1,11 @@
+---
+title: "Claude Desktop — установка PM Pack"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
+---
 # Claude Desktop — установка PM Pack
 
 Два способа подключить skills и instructions в **Claude Desktop** (и Cowork, если включены skills).

@@ -1,3 +1,11 @@
+---
+title: "Cursor PM Pack — Manifest"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
+---
 # Cursor PM Pack — Manifest
 
 **Version:** 1.2.0  

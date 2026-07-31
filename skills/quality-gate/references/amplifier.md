@@ -1,3 +1,11 @@
+---
+title: "Amplifier — Strength Amplification"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
+---
 # Amplifier — Strength Amplification
 
 ## Role

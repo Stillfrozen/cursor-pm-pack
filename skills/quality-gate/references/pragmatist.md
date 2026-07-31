@@ -1,3 +1,11 @@
+---
+title: "Pragmatist — Actionability"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
+---
 # Pragmatist — Actionability
 
 ## Role

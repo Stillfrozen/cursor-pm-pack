@@ -1,3 +1,11 @@
+---
+title: "PM Pack — skills & instructions for Cursor and Claude"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
+---
 # PM Pack — skills & instructions for Cursor and Claude
 
 Переносимый набор **skills** и **instructions** для продуктовой работы — без привязки к конкретному продукту, без MCP и без dev-инструментов.

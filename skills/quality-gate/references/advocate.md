@@ -1,3 +1,11 @@
+---
+title: "Advocate — Idea Defense"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
+---
 # Advocate — Idea Defense
 
 ## Role

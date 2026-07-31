@@ -1,3 +1,11 @@
+---
+title: "PM Pack — Global Instructions"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
+---
 # PM Pack — Global Instructions
 
 Единый блок правил для **Cursor** и **Claude Desktop**.

@@ -1,8 +1,11 @@
 ---
-name: quality-gate
-description: Response-quality meta-layer. Always classifies request complexity first; for non-trivial work requires an explicit contract with the user; enforces full anti-hallucination discipline on any research; then optional reviewer panel. Use by default unless another strict template skill owns the workflow.
+title: "Quality Gate — Response Quality Layer"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
 ---
-
 # Quality Gate — Response Quality Layer
 
 Run **in order**: complexity routing → contract (when non-trivial) → anti-hallucination (baseline always; **full protocol on research**) → review panel (when applicable).

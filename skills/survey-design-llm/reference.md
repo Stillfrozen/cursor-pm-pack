@@ -1,3 +1,11 @@
+---
+title: "Survey design — reference"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
+---
 # Survey design — reference
 
 ## Hypothesis → question mapping (non-converter template)

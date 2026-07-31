@@ -1,9 +1,11 @@
 ---
-name: survey-results-analysis
-description: Analyze survey Excel/CSV exports without manual JSON config — auto column mapping, aggregates via ad-hoc Python, masked respondent lists, UX and segment reports. Use when analyzing survey results, xlsx выгрузка, barrier segments, or executive presentation from survey data.
-disable-model-invocation: true
+title: "Survey results analysis"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
 ---
-
 # Survey results analysis
 
 ## User-facing rule

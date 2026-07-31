@@ -1,3 +1,11 @@
+---
+title: "Contract — Expectation Agreement & Delivery Check"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
+---
 # Contract — Expectation Agreement & Delivery Check
 
 ## Purpose

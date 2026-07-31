@@ -1,3 +1,11 @@
+---
+title: "Skeptic — Assumptions & Biases"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
+---
 # Skeptic — Assumptions & Biases
 
 ## Role

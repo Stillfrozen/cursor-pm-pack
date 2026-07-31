@@ -1,3 +1,11 @@
+---
+title: "User Rules / Custom Instructions"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
+---
 # User Rules / Custom Instructions
 
 Единый файл [`global.md`](global.md) — для **Cursor User Rules** и **Claude Custom instructions**.

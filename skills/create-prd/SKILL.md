@@ -1,8 +1,11 @@
 ---
-name: create-prd
-description: Generates a structured Product Requirements Document via clarifying-question dialog, adapted for B2C and regulated products when applicable. Produces a PRD with optional regulatory and compliance sections in addition to standard ones. Use when writing a PRD, defining feature requirements, or producing a development-ready spec. Trigger phrases — "напиши PRD", "make a PRD", "draft requirements", "spec for [feature]".
+title: "Create PRD — B2C edition"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
 ---
-
 # Create PRD — B2C edition
 
 ## Goal

@@ -1,9 +1,11 @@
 ---
-name: survey-design-llm
-description: Design product surveys with testable hypotheses H1–Hn and questionnaire spec Q1–Qn via chat only — no JSON config. Use when creating a survey, writing questionnaire questions, non-converter research, or hypothesis matrix.
-disable-model-invocation: true
+title: "Survey design with LLM"
+tags:
+  - проект/workspace
+  - подпроект/tools
+  - тип/guide
+  - область/meta
 ---
-
 # Survey design with LLM
 
 ## User-facing rule
