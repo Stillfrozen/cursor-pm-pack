@@ -14,6 +14,8 @@ tags:
 
 **Для кого:** PM, аналитики, маркетинг, ops.
 
+> **Русская пошаговая установка и troubleshooting:** [docs/INSTALL.ru.md](docs/INSTALL.ru.md)
+
 ---
 
 ## Быстрый старт
