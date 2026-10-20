@@ -130,3 +130,7 @@ git pull
 **Claude skills не видны?** — `~/.claude/skills/` или ZIP upload; в Cowork — `/имя-скилла`.
 
 **Один пакет на двух клиентах?** — `./install.sh --target both`; instructions один раз в каждый UI.
+
+## License
+
+MIT — see [LICENSE](LICENSE). Copyright (c) 2026 Ivan Pashintsev (Stillfrozen) and contributors. Third-party components and external services retain their own terms; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
